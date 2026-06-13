@@ -1,0 +1,284 @@
+-- Hapus UI lama jika ada agar tidak menumpuk saat di-execute ulang
+if game.CoreGui:FindFirstChild("NexzanHub_FinalResort") then
+    game.CoreGui["NexzanHub_FinalResort"]:Destroy()
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "NexzanHub_FinalResort"
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ResetOnSpawn = false
+ScreenGui.DisplayOrder = 999999999
+
+-- ==================== [1] SISTEM KEY INSTAN ====================
+local KeyFrame = Instance.new("Frame")
+KeyFrame.Name = "KeyFrame"
+KeyFrame.Parent = ScreenGui
+KeyFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+KeyFrame.Position = UDim2.new(0.35, 0, 0.35, 0)
+KeyFrame.Size = UDim2.new(0, 250, 0, 130)
+KeyFrame.Active = true
+KeyFrame.Draggable = true
+
+local KeyCorner = Instance.new("UICorner")
+KeyCorner.CornerRadius = UDim.new(0, 8)
+KeyCorner.Parent = KeyFrame
+
+local KeyTitle = Instance.new("TextLabel")
+KeyTitle.Parent = KeyFrame
+KeyTitle.Size = UDim2.new(1, 0, 0, 30)
+KeyTitle.BackgroundTransparency = 1
+KeyTitle.Text = "NEXZAN HUB | ENTER KEY"
+KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyTitle.TextSize = 14
+KeyTitle.Font = Enum.Font.GothamBold
+
+local KeyInput = Instance.new("TextBox")
+KeyInput.Parent = KeyFrame
+KeyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
+KeyInput.Size = UDim2.new(0.8, 0, 0, 30)
+KeyInput.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+KeyInput.Text = ""
+KeyInput.PlaceholderText = "Masukkan Key Disini..."
+KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyInput.TextSize = 12
+KeyInput.Font = Enum.Font.Gotham
+
+local KeyInputCorner = Instance.new("UICorner")
+KeyInputCorner.CornerRadius = UDim.new(0, 4)
+KeyInputCorner.Parent = KeyInput
+
+local SubmitBtn = Instance.new("TextButton")
+SubmitBtn.Parent = KeyFrame
+SubmitBtn.Position = UDim2.new(0.1, 0, 0.65, 0)
+SubmitBtn.Size = UDim2.new(0.8, 0, 0, 30)
+SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+SubmitBtn.Text = "Check Key"
+SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+SubmitBtn.TextSize = 13
+SubmitBtn.Font = Enum.Font.GothamBold
+
+local SubmitCorner = Instance.new("UICorner")
+SubmitCorner.CornerRadius = UDim.new(0, 4)
+SubmitCorner.Parent = SubmitBtn
+
+-- ==================== [2] MAIN PANEL UTAMA ====================
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 18)
+MainFrame.Position = UDim2.new(0.3, 0, 0.25, 0)
+MainFrame.Size = UDim2.new(0, 320, 0, 180)
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.Visible = false -- Sembunyi sampai key benar
+
+local MainCorner = Instance.new("UICorner")
+MainCorner.CornerRadius = UDim.new(0, 8)
+MainCorner.Parent = MainFrame
+
+local Title = Instance.new("TextLabel")
+Title.Parent = MainFrame
+Title.Size = UDim2.new(1, 0, 0, 30)
+Title.Position = UDim2.new(0, 12, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "NEXZAN HUB"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 14
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Font = Enum.Font.GothamBold
+
+-- ==================== [3] SISTEM TAB SEPARATOR ====================
+local TabContainer = Instance.new("Frame")
+TabContainer.Parent = MainFrame
+TabContainer.Position = UDim2.new(0, 0, 0, 30)
+TabContainer.Size = UDim2.new(0, 90, 1, -30)
+TabContainer.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+
+local T1 = Instance.new("TextButton")
+T1.Parent = TabContainer
+T1.Size = UDim2.new(1, 0, 0, 35)
+T1.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+T1.Text = "Info"
+T1.TextColor3 = Color3.fromRGB(255, 255, 255)
+T1.Font = Enum.Font.GothamBold
+
+local T2 = Instance.new("TextButton")
+T2.Parent = TabContainer
+T2.Position = UDim2.new(0, 0, 0, 40)
+T2.Size = UDim2.new(1, 0, 0, 35)
+T2.BackgroundColor3 = Color3.fromRGB(22, 22, 26)
+T2.Text = "Dupe"
+T2.TextColor3 = Color3.fromRGB(180, 180, 180)
+T2.Font = Enum.Font.GothamBold
+
+local T3 = Instance.new("TextButton")
+T3.Parent = TabContainer
+T3.Position = UDim2.new(0, 0, 0, 80)
+T3.Size = UDim2.new(1, 0, 0, 35)
+T3.BackgroundColor3 = Color3.fromRGB(22, 22, 26)
+T3.Text = "WM"
+T3.TextColor3 = Color3.fromRGB(180, 180, 180)
+T3.Font = Enum.Font.GothamBold
+
+-- Halaman Konten (Pages)
+local P1 = Instance.new("Frame") -- Tab 1
+P1.Parent = MainFrame
+P1.Position = UDim2.new(0, 95, 0, 35)
+P1.Size = UDim2.new(1, -100, 1, -40)
+P1.BackgroundTransparency = 1
+
+local P2 = Instance.new("Frame") -- Tab 2
+P2.Parent = MainFrame
+P2.Position = UDim2.new(0, 95, 0, 35)
+P2.Size = UDim2.new(1, -100, 1, -40)
+P2.BackgroundTransparency = 1
+P2.Visible = false
+
+local P3 = Instance.new("Frame") -- Tab 3
+P3.Parent = MainFrame
+P3.Position = UDim2.new(0, 95, 0, 35)
+P3.Size = UDim2.new(1, -100, 1, -40)
+P3.BackgroundTransparency = 1
+P3.Visible = false
+
+-- ==================== FILL ISI TAB ====================
+
+-- ISI TAB 1: INFO (FPS & MAP)
+local MapLabel = Instance.new("TextLabel")
+MapLabel.Parent = P1
+MapLabel.Size = UDim2.new(1, 0, 0, 25)
+MapLabel.BackgroundTransparency = 1
+local currentMap = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name or "Unknown Map"
+MapLabel.Text = "Map: " .. currentMap
+MapLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+MapLabel.TextSize = 12
+MapLabel.TextXAlignment = Enum.TextXAlignment.Left
+MapLabel.Font = Enum.Font.Gotham
+
+local FpsLabel = Instance.new("TextLabel")
+FpsLabel.Parent = P1
+FpsLabel.Position = UDim2.new(0, 0, 0, 30)
+FpsLabel.Size = UDim2.new(1, 0, 0, 25)
+FpsLabel.BackgroundTransparency = 1
+FpsLabel.Text = "FPS: Menghitung..."
+FpsLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+FpsLabel.TextSize = 12
+FpsLabel.TextXAlignment = Enum.TextXAlignment.Left
+FpsLabel.Font = Enum.Font.Gotham
+
+task.spawn(function()
+    local runService = game:GetService("RunService")
+    while task.wait(1) do
+        local fps = math.floor(1 / runService.RenderStepped:Wait())
+        FpsLabel.Text = "FPS: " .. tostring(fps)
+    end
+end)
+
+-- ISI TAB 2: FITUR DUPE AUTO SWAP
+local isClicking = false
+local ToggleBtn = Instance.new("TextButton")
+ToggleBtn.Parent = P2
+ToggleBtn.Size = UDim2.new(0.95, 0, 0, 40)
+ToggleBtn.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+ToggleBtn.Text = " Auto Swap Proximity"
+ToggleBtn.TextColor3 = Color3.fromRGB(180, 180, 180)
+ToggleBtn.TextSize = 12
+ToggleBtn.Font = Enum.Font.GothamBold
+
+local Indicator = Instance.new("Frame")
+Indicator.Parent = ToggleBtn
+Indicator.Position = UDim2.new(0.8, 0, 0.25, 0)
+Indicator.Size = UDim2.new(0, 15, 0, 15)
+Indicator.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+
+-- ISI TAB 3: WATERMARK
+local WMLabel = Instance.new("TextLabel")
+WMLabel.Parent = P3
+WMLabel.Size = UDim2.new(1, 0, 0, 30)
+WMLabel.BackgroundTransparency = 1
+WMLabel.Text = "TIKTOK : Nexzan Hub"
+WMLabel.TextColor3 = Color3.fromRGB(0, 150, 255)
+WMLabel.TextSize = 14
+WMLabel.Font = Enum.Font.GothamBold
+
+-- ==================== [4] TOMBOL MINIMIZE INDEPENDEN (NH BULAT) ====================
+local MinBtn = Instance.new("TextButton")
+MinBtn.Name = "NH_Min"
+MinBtn.Parent = ScreenGui
+MinBtn.Position = UDim2.new(0.15, 0, 0.15, 0)
+MinBtn.Size = UDim2.new(0, 45, 0, 45)
+MinBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+MinBtn.Text = "NH"
+MinBtn.TextColor3 = Color3.fromRGB(0, 150, 255)
+MinBtn.TextSize = 16
+MinBtn.Font = Enum.Font.GothamBold
+MinBtn.Visible = false
+MinBtn.Active = true
+MinBtn.Draggable = true -- Bisa digeser sepuasnya di HP
+
+local MinCorner = Instance.new("UICorner")
+MinCorner.CornerRadius = UDim.new(1, 0)
+MinCorner.Parent = MinBtn
+
+local MinStroke = Instance.new("UIStroke")
+MinStroke.Color = Color3.fromRGB(0, 150, 255)
+MinStroke.Thickness = 1.5
+MinStroke.Parent = MinBtn
+
+-- ==================== SCRIPT LOGIC (PERPINDAHAN & KLIK) ====================
+
+-- Verifikasi Key (NexzanKey)
+SubmitBtn.MouseButton1Click:Connect(function()
+    if KeyInput.Text == "NexzanKey" then
+        KeyFrame.Visible = false
+        MainFrame.Visible = true
+        MinBtn.Visible = true
+    else
+        SubmitBtn.Text = "KEY SALAH!"
+        SubmitBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+        task.wait(1)
+        SubmitBtn.Text = "Check Key"
+        SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+    end
+end)
+
+-- Minimize Click (Buka/Tutup Instan Tanpa Delay Ukuran)
+MinBtn.MouseButton1Click:Connect(function()
+    MainFrame.Visible = not MainFrame.Visible
+end)
+
+-- Navigasi Tab Klik
+T1.MouseButton1Click:Connect(function()
+    P1.Visible = true; P2.Visible = false; P3.Visible = false
+    T1.BackgroundColor3 = Color3.fromRGB(30,30,35); T2.BackgroundColor3 = Color3.fromRGB(22,22,26); T3.BackgroundColor3 = Color3.fromRGB(22,22,26)
+end)
+T2.MouseButton1Click:Connect(function()
+    P1.Visible = false; P2.Visible = true; P3.Visible = false
+    T1.BackgroundColor3 = Color3.fromRGB(22,22,26); T2.BackgroundColor3 = Color3.fromRGB(30,30,35); T3.BackgroundColor3 = Color3.fromRGB(22,22,26)
+end)
+T3.MouseButton1Click:Connect(function()
+    P1.Visible = false; P2.Visible = false; P3.Visible = true
+    T1.BackgroundColor3 = Color3.fromRGB(22,22,26); T2.BackgroundColor3 = Color3.fromRGB(22,22,26); T3.BackgroundColor3 = Color3.fromRGB(30,30,35)
+end)
+
+-- Logika Auto Swap
+ToggleBtn.MouseButton1Click:Connect(function()
+    isClicking = not isClicking
+    if isClicking then
+        Indicator.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+        ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        task.spawn(function()
+            while isClicking do
+                for _, obj in pairs(workspace:GetDescendants()) do
+                    if obj:IsA("ProximityPrompt") and obj.ActionText == "Swap" then
+                        fireproximityprompt(obj)
+                    end
+                end
+                task.wait(0.05)
+            end
+        end)
+    else
+        Indicator.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+        ToggleBtn.TextColor3 = Color3.fromRGB(180, 180, 180)
+    end
+end)
