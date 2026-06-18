@@ -1,0 +1,71 @@
+-- =================================================================
+-- 🔮 NEXZAN HUB - UI TEMPLATE MURNI (UPLOAD INI KE CLOUD)
+-- =================================================================
+
+if game.CoreGui:FindFirstChild("NH_Premium_Core") then game.CoreGui.NH_Premium_Core:Destroy() end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "NH_Premium_Core"
+ScreenGui.Parent = game.CoreGui
+
+-- Tombol Bulat NH (Buka/Tutup)
+local Circle = Instance.new("TextButton", ScreenGui)
+Circle.Name = "OpenButton"
+Circle.Size = UDim2.new(0, 50, 0, 50)
+Circle.Position = UDim2.new(0.05, 0, 0.4, 0)
+Circle.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
+Circle.Text = "NH"
+Circle.TextColor3 = Color3.new(1, 1, 1)
+Circle.Active = true
+Circle.Draggable = true
+Instance.new("UICorner", Circle).CornerRadius = UDim.new(1, 0)
+
+-- Main Frame
+local MainFrame = Instance.new("Frame", ScreenGui)
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 300, 0, 200) 
+MainFrame.Position = UDim2.new(0.2, 0, 0.2, 0)
+MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.Visible = false
+Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 10)
+Instance.new("UIStroke", MainFrame).Color = Color3.fromRGB(138, 43, 226)
+
+-- Title
+local Title = Instance.new("TextLabel", MainFrame)
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Text = "🔮 NEXZAN HUB - Cross Rivers For Brainrot"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.Font = Enum.Font.SourceSansBold
+
+-- Scrolling Area
+local ScrollingFrame = Instance.new("ScrollingFrame", MainFrame)
+ScrollingFrame.Size = UDim2.new(1, -20, 1, -60)
+ScrollingFrame.Position = UDim2.new(0, 10, 0, 50)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.ScrollBarThickness = 4
+
+local UIListLayout = Instance.new("UIListLayout", ScrollingFrame)
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 8)
+
+Circle.MouseButton1Click:Connect(function() MainFrame.Visible = not MainFrame.Visible end)
+
+-- KUNCI UTAMA: Menyimpan fungsi ke global variable (_G) agar bisa dipanggil dari luar loadstring
+_G.CreateNexzanButton = function(name, callback)
+    local btn = Instance.new("TextButton", ScrollingFrame)
+    btn.Size = UDim2.new(1, 0, 0, 40)
+    btn.Text = name
+    btn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    btn.TextColor3 = Color3.new(1, 1, 1)
+    btn.Font = Enum.Font.SourceSans
+    btn.TextSize = 14
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 5)
+    btn.MouseButton1Click:Connect(callback)
+    return btn
+end
+
+-- Mengembalikan fungsi agar bisa dibaca script utama
+return _G.CreateNexzanButton
