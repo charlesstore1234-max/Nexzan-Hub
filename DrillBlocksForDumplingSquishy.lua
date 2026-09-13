@@ -959,7 +959,7 @@ local TabInfo = Window:CreateTab("info")
 
 TabInfo:CreateSection("System Info", "Build Details")
 TabInfo:CreateLabel("Drill Blocks for Dumpling Squishy Script By Nexzan Hub")
-TabInfo:CreateLabel("Version Script 1.0.0")
+TabInfo:CreateLabel("Version Script 2.0.0")
 TabInfo:CreateLabel("Next Update Script Cooming Soon : ?")
 
 -- ==========================================
