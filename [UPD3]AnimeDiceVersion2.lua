@@ -881,10 +881,7 @@ TabInfo:CreateLabel("Version 2.0.0 (Anime Dice)")
 TabInfo:CreateLabel("Cooming Soon Next Update: Next Update on Monday, September 14, 2026")
 
 TabInfo:CreateSection("New Features", "New Features")
-TabInfo:CreateLabel("
-• Auto Sell Equip
-• Buy Dice
-• Auto Rebirth")
+TabInfo:CreateLabel("• Auto Sell Equip | • Buy Dice | • Auto Rebirth")
 
 -- ==========================================
 -- TAB AUTO ROLL & FARM
